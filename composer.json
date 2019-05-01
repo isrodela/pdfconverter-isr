@@ -1,4 +1,5 @@
 {"require": {
-  "ext-mbstring": "*"
+  "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "~6.0"
 }
 }

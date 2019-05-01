@@ -2,11 +2,13 @@
 namespace Sample;
 
 require_once 'EasyPdfCloud/autoload.php';
+require_once 'vendor/autoload.php';
 
 
 class Program
 {
-    
+    //private static $SCMClientID = 'c82b6582-ef2c-45f5-beda-d76804750fa7';
+    //private static $SCMKey = '5c833d4bffd74e8eabe38ec54f37f18ayNrsfzL6dWamdFmEsgtDnnje7W4Ht2xvMgBZNp0vtnOUnqhm47BWntpKnMvJ4ENlipZ7EN1Cq7UAZP0QzRNw0bHd00vA4r0p';
 
     //////////////////////////////////////////////////////////////////////
     //
@@ -384,8 +386,26 @@ class Program
         \chdir(__DIR__);
 
         //get GUID
-        $docGUID = $_GET["guid"];
+        $docGUID = $_GET["guid"];        
+        static::debugPrintLine('$docGUID'.' | '.$docGUID);
 
+        //make call to get document from spring
+
+        $authBody='{"client_id":"c82b6582-ef2c-45f5-beda-d76804750fa7","client_secret":"5c833d4bffd74e8eabe38ec54f37f18ayNrsfzL6dWamdFmEsgtDnnje7W4Ht2xvMgBZNp0vtnOUnqhm47BWntpKnMvJ4ENlipZ7EN1Cq7UAZP0QzRNw0bHd00vA4r0p"}';
+        $client = new Client([
+            'base_uri' => 'https://authuat.springcm.com/api/v201606/apiuser',
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept'     => 'application/json'
+            ],
+            ['body' => $authBody]
+        ]);
+
+        $response = $client->post();
+        
+        static::debugPrintLine("status | ".$response->getStatusCode());
+
+        static::debugPrintLine();
         static::debugPrintLine('Working directory: ' . \getcwd());
         static::debugPrintLine();
 
@@ -438,7 +458,6 @@ class Program
         }
 
         static::debugPrintLine('Done');
-        static::debugPrintLine('$docGUID'.' | '.$docGUID);
     }
 
     //////////////////////////////////////////////////////////////////////
