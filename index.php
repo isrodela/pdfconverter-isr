@@ -2,7 +2,7 @@
 namespace Sample;
 
 require_once 'EasyPdfCloud/autoload.php';
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 
 class Program
@@ -392,7 +392,7 @@ class Program
         //make call to get document from spring
 
         $authBody='{"client_id":"c82b6582-ef2c-45f5-beda-d76804750fa7","client_secret":"5c833d4bffd74e8eabe38ec54f37f18ayNrsfzL6dWamdFmEsgtDnnje7W4Ht2xvMgBZNp0vtnOUnqhm47BWntpKnMvJ4ENlipZ7EN1Cq7UAZP0QzRNw0bHd00vA4r0p"}';
-        $client = new Client([
+        $client = new \Guzzle\Client([
             'base_uri' => 'https://authuat.springcm.com/api/v201606/apiuser',
             'headers' => [
                 'Content-Type' => 'application/json',
