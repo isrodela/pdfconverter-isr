@@ -3,8 +3,11 @@ namespace Sample;
 
 require_once 'EasyPdfCloud/autoload.php';
 
+
 class Program
 {
+    
+
     //////////////////////////////////////////////////////////////////////
     //
     // !!! VERY IMPORTANT !!!
@@ -380,6 +383,9 @@ class Program
         // (both using relative path) can be found
         \chdir(__DIR__);
 
+        //get GUID
+        $docGUID = $_GET["guid"];
+
         static::debugPrintLine('Working directory: ' . \getcwd());
         static::debugPrintLine();
 
@@ -432,6 +438,7 @@ class Program
         }
 
         static::debugPrintLine('Done');
+        static::debugPrintLine('$docGUID'.' | '.$docGUID);
     }
 
     //////////////////////////////////////////////////////////////////////
